@@ -1,14 +1,24 @@
+using System;
 using System.Data.Common;
+using System.Data;
 using Pizzas.API.Models;
 using System.Collections.Generic;
 using System.Linq;
 using System.Data.SqlClient;
 using Dapper;
+using System.Net;
+using System.Dynamic;
+using Microsoft.VisualBasic.CompilerServices;
+
 
 namespace Pizzas.API.Helpers
 {
     public static class BD{
-        private static string CONNECTION_STRING = @"Persist Security Info=False;UserID=Pizzas;password=VivaLaMuzza123;Initial Catalog=DAI-Pizzas;Data Source=.;";
+        //private static string CONNECTION_STRING = @"Persist Security Info=False;UserID=Pizzass;password=VivaLaMuzza123;Initial Catalog=DAI-Pizzas;Data Source=.;";
+        //DECIRLE A POLSHU QUE HAY PROBLEMAS CON LA CONEXION A BASE DE DATOS
+        private static string server = Dns.GetHostName();
+        private static string CONNECTION_STRING = @$"Server={server}\SQLEXPRESS;DataBase=DAI-Pizzas;Trusted_Connection=True;";        
+
 
         public static List<Pizza> GetAll() {
             string sqlQuery;
