@@ -43,7 +43,8 @@ namespace Pizzas.API.Controllers {
             return CreatedAtAction(nameof(Create), new { id = pizza.Id }, pizza);
         }
 
-        [HttpPut("{id}")] public IActionResult Update(int id, Pizza pizza) {
+        [HttpPut("{id}")] 
+        public IActionResult Update(int id, Pizza pizza) {
 
             IActionResult respuesta = null;
             Pizza entity;
@@ -57,6 +58,7 @@ namespace Pizzas.API.Controllers {
                     respuesta = NotFound();
                 } else {
                     intRowsAffected = BD.UpdateById(pizza);
+                    Console.WriteLine(intRowsAffected);
                     if (intRowsAffected > 0){
                         respuesta = Ok(pizza);
                     } else {
