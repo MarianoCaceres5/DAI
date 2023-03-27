@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using System.Threading.Tasks;
 using System.Net.Http;
 using System.Net;
@@ -8,6 +9,8 @@ using Pizzas.API.Helpers;
 using Pizzas.API.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.Reflection;
+using System.Text.Json;
+using OMDb.API.Models;
 
 namespace Pizzas.API.Controllers {
 
@@ -17,22 +20,26 @@ namespace Pizzas.API.Controllers {
         
         [HttpGet] 
         [Route("search")]       
-        public IActionResult GetPeliculaByName ([FromQuery] string nombrePelicula) {
+        public async Task<IActionResult> GetPeliculaByName ([FromQuery] string nombrePelicula) {
 
             //string apiResponse = async HTTPHelper.GetContentAsync("http://www.omdbapi.com/?t="+nombrePelicula+ "apikey=8f11e689", "error");
             //return Ok(apiResponse);
-            Task<string> apiResponse = HTTPHelper.ObtenerPeliculaPorTitulo(nombrePelicula, "error");
-            return Ok("la pelicula es " + apiResponse);
+            string apiResponse;
+            apiResponse = await HTTPHelper.GetContentAsync("https://www.omdbapi.com/?apikey=8f11e689&t="+ nombrePelicula, "error");
+            ImdbEntity pelicula = JsonSerializer.Deserialize<ImdbEntity>(apiResponse);
+            string returnValue = "El director de '" + pelicula.Title + "' es " + pelicula.Director + ", y los actores principales son: " + pelicula.Actors;
+            return Ok(returnValue);
             
         }
 
         [HttpGet]
         [Route("movie/{idPelicula}")]   
-        public IActionResult GetPeliculaById ([FromRoute] string idPelicula) {
-            Task<string> apiResponse = HTTPHelper.ObtenerPeliculaPorId(idPelicula, "error");
-            return Ok("la pelicula es " + apiResponse);            
+        public async Task<IActionResult> GetPeliculaById ([FromRoute] string idPelicula) {
+            string apiResponse = await HTTPHelper.GetContentAsync("https://www.omdbapi.com/?apikey=8f11e689&i="+ idPelicula, "error");            
+            ImdbEntity pelicula = JsonSerializer.Deserialize<ImdbEntity>(apiResponse);
+            string returnValue = "El director de '" + pelicula.Title + "' es " + pelicula.Director + ", y los actores principales son: " + pelicula.Actors;
+            return Ok(returnValue);           
         }       
-
         
     }
 }
