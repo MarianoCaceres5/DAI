@@ -37,7 +37,7 @@ namespace Pizzas.API.Controllers {
         public async Task<IActionResult> GetPeliculaById ([FromRoute] string idPelicula) {
             string apiResponse = await HTTPHelper.GetContentAsync("https://www.omdbapi.com/?apikey=8f11e689&i="+ idPelicula, "error");            
             ImdbEntity pelicula = JsonSerializer.Deserialize<ImdbEntity>(apiResponse);
-            string returnValue = "El director de '" + pelicula.Title + "' es " + pelicula.Director + ", y los actores principales son: " + pelicula.Actors;
+            string returnValue = "La pelicula es '" + pelicula.Title + "', de " + pelicula.Director;
             return Ok(returnValue);           
         }       
         
