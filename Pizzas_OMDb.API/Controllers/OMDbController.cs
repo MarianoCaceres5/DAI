@@ -62,7 +62,7 @@ namespace Pizzas.API.Controllers {
         } 
 
         [HttpGet]
-        [Route("movie/{imdbid}")]
+        [Route("movieInHelper/{imdbid}")]
         public async Task<IActionResult> GetMovieInHelper([FromRoute] string imdbid = "") {
             IActionResult           returnValue;
             SearchByIdResponse      returnObject;
