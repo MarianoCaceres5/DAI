@@ -10,6 +10,8 @@
     "EJ03": "node src/modules/ej3.js",
     "EJ04": "node src/modules/ej4.js",
     "EJ05": "node src/modules/ej5.js",
+    "EJ06": "node src/modules/ej6.js",
+    "EJ07": "node src/modules/ej7.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
@@ -18,6 +20,7 @@
   "author": "Mariano Caceres",
   "license": "ISC",
   "dependencies": {
+    "country-to-currency": "^1.0.8",
     "fs": "^0.0.1-security"
   }
 }
