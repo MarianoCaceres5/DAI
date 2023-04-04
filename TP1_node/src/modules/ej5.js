@@ -6,7 +6,7 @@ console.log(parseaUrl(url.parse(adr, true)));
 
 function parseaUrl(url){
     let objetoUrl = {
-        host:url.protocol + "://" + url.host,
+        host:url.protocol + "//" + url.host,
         pathname:url.pathname,
         parametros: url.query
     }
