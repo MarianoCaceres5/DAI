@@ -9,6 +9,7 @@ function urlValido(urlString){
         return Boolean(new URL(urlString));
     }
     catch(e){
+        //console.log(e);
         return false;
     }
 }
