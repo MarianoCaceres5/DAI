@@ -1,5 +1,6 @@
 import config from "../../dbconfig.js";
 import sql from 'mssql';
+import Pizza from "../models/pizza.js";
 
 export default class PizzaService {
     getAll = async () =>{
@@ -35,11 +36,41 @@ export default class PizzaService {
     }
 
     insert = async (pizza) =>{
-
+        let rowsAffected = 0;
+        console.log('UpdatePizza')
+        try{
+            let pool = await sql.connect(config);
+            let result = await pool.request()              
+                .input('Nombre', sql.VarChar, pizza.nombre)
+                .input('LibreGluten', sql.Bit, pizza.libreGluten)
+                .input('Importe', sql.Float, pizza.importe)
+                .input('Descripcion', sql.VarChar, pizza.descripcion)
+                .query('SET NOCOUNT ON INSERT INTO Pizzas(Nombre, LibreGluten, Importe, Descripcion) VALUES (@Nombre,@LibreGluten,@Importe,@Descripcion)');
+            rowsAffected = result.rowsAffected; // devuelve la cantidad de registros afectados (1 en caso de haberse eliminado correctamente la pizza)
+            console.log('Pizza creada')
+        } catch (e){
+            console.log(e);
+        }
+        return rowsAffected;
     }
 
     update = async (pizza) => {
-
+        let rowsAffected = 0;
+        console.log('UpdatePizza')
+        try{
+            let pool = await sql.connect(config);
+            let result = await pool.request()            
+                .input('Id', sql.Int, pizza.id)    
+                .input('Nombre', sql.VarChar, pizza.nombre)
+                .input('LibreGluten', sql.Bit, pizza.libreGluten)
+                .input('Importe', sql.Float, pizza.importe)
+                .input('Descripcion', sql.VarChar, pizza.descripcion)
+                .query('UPDATE Pizzas SET Nombre = @Nombre, LibreGluten = @LibreGluten, Importe = @Importe, Descripcion = @Descripcion WHERE Id = @Id');
+            rowsAffected = result.rowsAffected; // devuelve la cantidad de registros afectados (1 en caso de haberse eliminado correctamente la pizza)
+        } catch (e){
+            console.log(e);
+        }
+        return rowsAffected;
     }
 
     deleteById = async (id) => {
