@@ -1,0 +1,5 @@
+RequestError: Invalid object name 'Pizzzzas'. AT PizzaService/GetAll
+RequestError: Invalid object name 'Pizzzzas'. AT PizzaService/GetAll
+RequestError: 'NNOCOUNT' is not a recognized SET option. AT PizzaService/Insert
+RequestError: Must declare the scalar variable "@Nombree". AT PizzaService/Update
+ReferenceError: pool is not defined AT PizzaService/Update
