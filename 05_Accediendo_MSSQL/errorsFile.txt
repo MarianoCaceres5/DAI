@@ -3,3 +3,13 @@ RequestError: Invalid object name 'Pizzzzas'. AT PizzaService/GetAll
 RequestError: 'NNOCOUNT' is not a recognized SET option. AT PizzaService/Insert
 RequestError: Must declare the scalar variable "@Nombree". AT PizzaService/Update
 ReferenceError: pool is not defined AT PizzaService/Update
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/Update
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/Update
+RequestError: Incorrect syntax near ')'. AT PizzaService/Insert
+RequestError: Procedure or function 'sp_UpdateById' expects parameter '@Id', which was not supplied. AT PizzaService/Update
+RequestError: Procedure or function 'sp_UpdateById' expects parameter '@Id', which was not supplied. AT PizzaService/Update
+RequestError: Procedure or function 'sp_UpdateById' expects parameter '@Id', which was not supplied. AT PizzaService/Update
+TypeError: Cannot read properties of undefined (reading 'id') AT PizzaService/Update
+RequestError: Procedure or function 'sp_UpdateById' expects parameter '@Id', which was not supplied. AT PizzaService/Update
+RequestError: Incorrect syntax near '='. AT PizzaService/Update
+RequestError: Procedure or function 'sp_UpdateById' expects parameter '@Nombre', which was not supplied. AT PizzaService/Update

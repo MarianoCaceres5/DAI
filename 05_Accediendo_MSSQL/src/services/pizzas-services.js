@@ -10,7 +10,8 @@ export default class PizzaService {
         try{
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .query('SELECT * FROM Pizzas');
+                // .query('SELECT * FROM Pizzas');
+                .query('exec sp_GetAll');
             listaPizzas = result.recordsets[0];
         } catch (e){
             //console.log(e);
@@ -28,8 +29,10 @@ export default class PizzaService {
         try{
             let pool = await sql.connect(config);
             let result = await pool.request()
+                // .input('pId', sql.Int, id)
+                // .query('SELECT * FROM Pizzas WHERE Id = @pId');
                 .input('pId', sql.Int, id)
-                .query('SELECT * FROM Pizzas WHERE Id = @pId');
+                .query('exec sp_GetById @pId');
             returnPizza = result.recordsets[0][0]; // devuelve el primer elemento del primer request del query
         } catch (e){
             //console.log(e);
@@ -45,11 +48,17 @@ export default class PizzaService {
         try{
             let pool = await sql.connect(config);
             let result = await pool.request()              
-                .input('Nombre', sql.VarChar, pizza.nombre)
-                .input('LibreGluten', sql.Bit, pizza.libreGluten)
-                .input('Importe', sql.Float, pizza.importe)
-                .input('Descripcion', sql.VarChar, pizza.descripcion)
-                .query('SET NOCOUNT ON INSERT INTO Pizzas(Nombre, LibreGluten, Importe, Descripcion) VALUES (@Nombre,@LibreGluten,@Importe,@Descripcion)');
+                // .input('Nombre', sql.VarChar, pizza.nombre)
+                // .input('LibreGluten', sql.Bit, pizza.libreGluten)
+                // .input('Importe', sql.Float, pizza.importe)
+                // .input('Descripcion', sql.VarChar, pizza.descripcion)
+                // .query('SET NOCOUNT ON INSERT INTO Pizzas(Nombre, LibreGluten, Importe, Descripcion) VALUES (@Nombre,@LibreGluten,@Importe,@Descripcion)');
+
+                .input('nombre', sql.VarChar, pizza.nombre)
+                .input('libreGluten', sql.Bit, pizza.libreGluten)
+                .input('importe', sql.Float, pizza.importe)
+                .input('descripcion', sql.VarChar, pizza.descripcion)
+                .query('exec sp_Insert @Nombre = @nombre, @LibreGluten = @libreGluten, @Importe = @importe, @Descripcion = @descripcion');
             rowsAffected = result.rowsAffected; // devuelve la cantidad de registros afectados (1 en caso de haberse eliminado correctamente la pizza)
             console.log('Pizza creada')
         } catch (e){
@@ -65,12 +74,19 @@ export default class PizzaService {
         try{
             let pool = await sql.connect(config);
             let result = await pool.request()            
-                .input('Id', sql.Int, pizza.id)    
-                .input('Nombre', sql.VarChar, pizza.nombre)
-                .input('LibreGluten', sql.Bit, pizza.libreGluten)
-                .input('Importe', sql.Float, pizza.importe)
-                .input('Descripcion', sql.VarChar, pizza.descripcion)
-                .query('UPDATE Pizzas SET Nombre = @Nombre, LibreGluten = @LibreGluten, Importe = @Importe, Descripcion = @Descripcion WHERE Id = @Id');
+                // .input('Id', sql.Int, pizza.id)    
+                // .input('Nombre', sql.VarChar, pizza.nombre)
+                // .input('LibreGluten', sql.Bit, pizza.libreGluten)
+                // .input('Importe', sql.Float, pizza.importe)
+                // .input('Descripcion', sql.VarChar, pizza.descripcion)
+                // .query('UPDATE Pizzas SET Nombre = @Nombre, LibreGluten = @LibreGluten, Importe = @Importe, Descripcion = @Descripcion WHERE Id = @Id');
+
+                .input('id', sql.Int, pizza.id)    
+                .input('nombre', sql.VarChar, pizza.nombre)
+                .input('libreGluten', sql.Bit, pizza.libreGluten)
+                .input('importe', sql.Float, pizza.importe)
+                .input('descripcion', sql.VarChar, pizza.descripcion)
+                .query('exec sp_UpdateById @Id = @id, @Nombre = @nombre, @LibreGluten = @libreGluten, @Importe = @importe, @Descripcion = @descripcion');
             rowsAffected = result.rowsAffected; // devuelve la cantidad de registros afectados (1 en caso de haberse eliminado correctamente la pizza)
         } catch (e){
             //console.log(e);
@@ -85,8 +101,10 @@ export default class PizzaService {
         try{
             let pool = await sql.connect(config);
             let result = await pool.request()
-                .input('pId', sql.Int, id) // input (name, [type], value) - Agrega un parámetro de entrada al request.
-                .query('DELETE FROM Pizzas WHERE Id = @pId');
+                // .input('pId', sql.Int, id) // input (name, [type], value) - Agrega un parámetro de entrada al request.
+                // .query('DELETE FROM Pizzas WHERE Id = @pId');
+                .input('pId', sql.Int, id)
+                .query('exec sp_DeleteById @pId');
             rowsAffected = result.rowsAffected; // devuelve la cantidad de registros afectados (1 en caso de haberse eliminado correctamente la pizza)
         } catch (e){
             //console.log(e);
