@@ -4,14 +4,16 @@ import CopiaError from "../modules/log-helper.js";
 import Pizza from "../models/pizza.js";
 
 export default class PizzaService {
-    getAll = async () =>{
+    getAll = async (top, orderField, sortOrder) =>{
         let listaPizzas = null;
         console.log('GetAll')
         try{
             let pool = await sql.connect(config);
             let result = await pool.request()
-                // .query('SELECT * FROM Pizzas');
-                .query('exec sp_GetAll');
+
+                .query('SELECT ' + (top == null ? '' : 'TOP ' + top) + ' * FROM Pizzas ' + (orderField == null ? '' : 'ORDER BY ' + orderField) + ' ' + (sortOrder == null ? '' : '' + sortOrder));
+                
+                //.query('exec sp_GetAll');
             listaPizzas = result.recordsets[0];
         } catch (e){
             //console.log(e);

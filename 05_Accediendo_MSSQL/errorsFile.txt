@@ -13,3 +13,21 @@ TypeError: Cannot read properties of undefined (reading 'id') AT PizzaService/Up
 RequestError: Procedure or function 'sp_UpdateById' expects parameter '@Id', which was not supplied. AT PizzaService/Update
 RequestError: Incorrect syntax near '='. AT PizzaService/Update
 RequestError: Procedure or function 'sp_UpdateById' expects parameter '@Nombre', which was not supplied. AT PizzaService/Update
+RequestError: Invalid column name 'NombreASC'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'null'. AT PizzaService/GetAll
+RequestError: Invalid column name 'Idnull'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'null'. AT PizzaService/GetAll
+RequestError: Invalid column name 'NombreASC'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'null'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'null'. AT PizzaService/GetAll
+RequestError: Invalid column name 'Idnull'. AT PizzaService/GetAll
+RequestError: Invalid column name 'NombreASC'. AT PizzaService/GetAll
+RequestError: Invalid column name 'NombreASC'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near 'undefined'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near 'undefined'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'null'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near '*'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'FROM'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'null'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near '*'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'ASC'. AT PizzaService/GetAll
