@@ -11,7 +11,7 @@ export default class PizzaService {
             let pool = await sql.connect(config);
             let result = await pool.request()
 
-                .query('SELECT ' + (top == null ? '' : 'TOP ' + top) + ' * FROM Pizzas ' + (orderField == null ? '' : 'ORDER BY ' + orderField) + ' ' + (sortOrder == null ? '' : '' + sortOrder));
+                .query('SELECT ' + (top == null ? '' : 'TOP ' + top) + ' * FROM Pizzas ' + (orderField == null ? 'ORDER BY Id' : 'ORDER BY ' + orderField) + ' ' + (sortOrder == null ? '' : '' + sortOrder));
                 
                 //.query('exec sp_GetAll');
             listaPizzas = result.recordsets[0];

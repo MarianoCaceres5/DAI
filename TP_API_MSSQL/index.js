@@ -7,21 +7,54 @@ let pizzaService = new PizzaService();
 const app = express();
 const port = 3000;
 
-app.get('/getById/:id', function (req, res){
+app.get('/Pizzas/insert', function (req, res){ // consultar por que solo anda con get
+    try{        
+        let pizzaNueva = new Pizza(0, (req.query.Nombre == undefined ? "" : req.query.Nombre), (req.query.LibreGluten == undefined ? false : req.query.LibreGluten), (req.query.Importe == undefined ? 0 : req.query.Importe), (req.query.Descripcion == undefined ? "" : req.query.Descripcion));
+        let rowsAffected = pizzaService.insert(pizzaNueva);
+        if(rowsAffected != 0){
+            res.status(200).send('<p>Se creo la pizza</p>'); 
+        }else{
+            res.status(404).send('<p>No se pudo crear la pizza</p>'); 
+        }
+               
+    }catch(e){
+        res.status(404).send('<p>No se pudo crear la pizza</p>');        
+    }
+});
+
+app.get('/Pizzas/getAll', function (req, res){
 
     try{
-        console.log(pizzaService.getById(req.params.id).then(val => console.log(val)));
-        //res.send('id:' + req.params.id);
+        let listaPizzas = pizzaService.getAll((req.query.top == undefined ? null : req.query.top), (req.query.orderField == undefined ? null : req.query.orderField), (req.query.sortOrder == undefined ? null : req.query.sortOrder));
+        if(listaPizzas != null){
+            listaPizzas.then(val => res.send(val));
+        }else{
+            res.send('Algo falló');
+        }
+        
     }catch(e){
-        res.send(e);
+        res.send('Algo falló');        
     }
+});
 
-    //res.send("Hola Mundo");
-})
+app.get('/Pizzas/getById/:id', function (req, res){
+    try{                
+        let pizzaElegida = pizzaService.getById(req.params.id);
+        if(pizzaElegida != null){
+            pizzaElegida.then(val => res.send(val)); 
+        }else{
+            res.status(404).send('<p>No se encuentra la pizza</p>'); 
+        }
+               
+    }catch(e){
+        res.status(404).send('<p>No se encuentra la pizza</p>');        
+    }
+});
+
 
 app.listen(port, () => {
     console.log("Escuchando en el puerto " + port);
-})
+});
 
 //GetById
 //console.log(pizzaService.getById(19).then(val => console.log(val)));
