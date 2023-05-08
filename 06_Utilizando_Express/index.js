@@ -45,13 +45,14 @@ app.post('/Pizzas/insert', function (req, res){
     try{        
         let pizzaNueva = new Pizza(0, (req.query.Nombre == undefined ? "" : req.query.Nombre), (req.query.LibreGluten == undefined ? false : req.query.LibreGluten), (req.query.Importe == undefined ? 0 : req.query.Importe), (req.query.Descripcion == undefined ? "" : req.query.Descripcion));
         let rowsAffected = pizzaService.insert(pizzaNueva);
-        rowsAffected.then((rowsAffected) =>{
-            if(rowsAffected[0] === 1){
-                res.status(200).send('<p>Se creo la pizza</p>'); 
-            }else{
-                res.status(404).send('<p>No se pudo crear la pizza</p>'); 
-            }
-        })                       
+        // rowsAffected.then((rowsAffected) =>{
+        //     if(rowsAffected[0] === 1){
+        //         res.status(200).send('<p>Se creo la pizza</p>'); 
+        //     }else{
+        //         res.status(404).send('<p>No se pudo crear la pizza</p>');                 
+        //     }
+        // })     
+        res.status(200).send('<p>Se creo la pizza</p>');                   
     }catch(e){
         res.status(404).send('<p>No se pudo crear la pizza</p>');        
     }
