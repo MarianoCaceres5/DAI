@@ -51,3 +51,43 @@ RequestError: Incorrect syntax near 'asc'. AT PizzaService/GetAll
 RequestError: Incorrect syntax near the keyword 'desc'. AT PizzaService/GetAll
 RequestError: Incorrect syntax near the keyword 'ASC'. AT PizzaService/GetAll
 RequestError: Incorrect syntax near the keyword 'ASC'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near 'object HTMLInputElement'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near 'object HTMLInputElement'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near 'object HTMLInputElement'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near 'object HTMLInputElement'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near '*'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'asc'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near '*'. AT PizzaService/GetAll
+RequestError: Validation failed for parameter 'pId'. Invalid number. AT PizzaService/GetById
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+TypeError: Buffer is not a constructor AT PizzaService/Update
+TypeError: Buffer is not a constructor AT PizzaService/Update
+TypeError: Buffer is not a constructor AT PizzaService/Update
+TypeError: Buffer is not a constructor AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Validation failed for parameter 'importe'. Invalid number. AT PizzaService/Update
+RequestError: Incorrect syntax near 'undefined'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near 'undefined'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'FROM'. AT PizzaService/GetAll
+RequestError: Incorrect syntax near the keyword 'FROM'. AT PizzaService/GetAll
