@@ -2,18 +2,20 @@ import PizzaService from "./src/services/pizzas-services.js";
 import Pizza from "./src/models/pizza.js";
 import express, { json } from "express";
 import cors from "cors"
-import bodyParser from 'body-parser';
+// import bodyParser from 'body-parser';
 
 let pizzaService = new PizzaService();
 
 const app = express();
 const port = 3000;
 
-// app.use(express.json())
-
 app.use(cors({
     origin: '*'
 }));
+
+app.use(express.json());
+
+app.use(express.static('public'));
 
 app.delete('/Pizzas/deleteById/:id', function (req, res){
     try{                
@@ -32,7 +34,7 @@ app.delete('/Pizzas/deleteById/:id', function (req, res){
 });
 
 
-app.put('/Pizzas/update', bodyParser.json(), function (req, res){
+app.put('/Pizzas/update', function (req, res){
     try{        
         console.log(req.body.Id)
         let pizzaNueva = new Pizza((req.body.Id == undefined ? -1 : req.body.Id), req.body.Nombre, req.body.LibreGluten, req.body.Importe, req.body.Descripcion);
@@ -50,7 +52,7 @@ app.put('/Pizzas/update', bodyParser.json(), function (req, res){
     }
 });
 
-app.post('/Pizzas/insert', bodyParser.json(), function (req, res){
+app.post('/Pizzas/insert', function (req, res){
     try{        
         let pizzaNueva = new Pizza(0, (req.body.Nombre == undefined ? "" : req.body.Nombre), (req.body.LibreGluten == undefined ? false : req.body.LibreGluten), (req.body.Importe == undefined ? 0 : req.body.Importe), (req.body.Descripcion == undefined ? "" : req.body.Descripcion));
         let rowsAffected = pizzaService.insert(pizzaNueva);
@@ -100,6 +102,7 @@ app.get('/Pizzas/getById/:id', function (req, res){
 app.listen(port, () => {
     console.log("Escuchando en el puerto " + port);
 });
+
 
 //GetById
 //console.log(pizzaService.getById(19).then(val => console.log(val)));

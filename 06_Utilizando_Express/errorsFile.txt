@@ -91,3 +91,5 @@ RequestError: Incorrect syntax near 'undefined'. AT PizzaService/GetAll
 RequestError: Incorrect syntax near 'undefined'. AT PizzaService/GetAll
 RequestError: Incorrect syntax near the keyword 'FROM'. AT PizzaService/GetAll
 RequestError: Incorrect syntax near the keyword 'FROM'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetById
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetById

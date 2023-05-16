@@ -1,5 +1,3 @@
-import { chmod } from "fs";
-
 
 function getAll(){
     let top = document.getElementById("top").value
