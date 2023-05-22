@@ -19,8 +19,8 @@ router.get('', async (req, res) =>{
 
 router.get('/:id', async (req, res) =>{
     try{
-        let pizzaElegida = await pizzaService.getById(req.params.id);        
-        res.send(pizzaElegida);
+        let pizzaElegida = await pizzaService.getById(req.params.id);
+        res.status(200).send(pizzaElegida);
     }catch(e){
         console.log(e);
         res.status(404).send('<p>No se encontro la pizza</p>');

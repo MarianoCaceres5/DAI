@@ -7,7 +7,7 @@ function getAll(){
     console.log(top)
 
     axios
-    .get("http://localhost:3000/Pizzas/?"+(top != "" ? "top="+top : undefined)+"&"+(orderField != "" ? "oderField="+orderField : undefined)+"&"+(sortOrder != "" ? "sortOrder"+sortOrder : undefined))
+    .get("http://localhost:3000/Pizzas?"+(top != "" ? "top="+top : undefined)+"&"+(orderField != "" ? "oderField="+orderField : undefined)+"&"+(sortOrder != "" ? "sortOrder"+sortOrder : undefined))
     // .get("http://localhost:3000/Pizzas/getAll")
     .then((result) => {   
         let listaPizzas = ''; 
@@ -24,17 +24,20 @@ function getAll(){
 }
 
 function getById(){
-    let id = document.getElementById("idGet").value
-    console.log(id)
-
+    let id = document.getElementById("idGet").value;
     axios    
     .get("http://localhost:3000/Pizzas/"+id)
-    .then((result) => {    
-        let pizzaElegida = result.data; 
-        console.log(result.data);
-        document.getElementById("pizza-elegida").innerHTML = `
-            <li class="list-group-item active">${pizzaElegida.Nombre}</li>
-        `;
+    .then((result) => {      
+        if(result.data.Nombre !== undefined){
+            document.getElementById("pizza-elegida").innerHTML = `
+                <li class="list-group-item active">${result.data.Nombre}</li>
+            `;
+        }else{
+            document.getElementById("pizza-elegida").innerHTML = `
+                <li class="list-group-item active">No se encontro la pizza</li>
+            `;
+        }
+        
     })
     .catch((error) => {
         console.log(error);
@@ -66,7 +69,7 @@ function insert(){
     console.log(document.getElementById("descripcionInsert").value)
 
     axios    
-    .post("http://localhost:3000/Pizzas/", body)
+    .post("http://localhost:3000/Pizzas", body)
     .then((result) => {    
         console.log(result);
     })
@@ -77,7 +80,7 @@ function insert(){
 
 function update(){
 
-    console.log(document.getElementById("importeUpdate").value == "")
+    // console.log(document.getElementById("importeUpdate").value == "")
 
     let body = {
         "Id": (document.getElementById("idUpdate").value == null ? undefined : document.getElementById("idUpdate").value),
@@ -88,7 +91,7 @@ function update(){
     }
 
     axios    
-    .put("http://localhost:3000/Pizzas/", body)
+    .put("http://localhost:3000/Pizzas", body)
     .then((result) => {    
         console.log(result);
     })
@@ -97,4 +100,11 @@ function update(){
     });
 }
 
+function resetAll(){
+    document.getElementById("lista-get-pizzas").innerHTML = ``;
+}
+
+function resetSelectedPizza(){
+    document.getElementById("pizza-elegida").innerHTML = ``;
+}
 
