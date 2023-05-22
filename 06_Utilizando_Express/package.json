@@ -6,6 +6,7 @@
   "type": "module",
   "scripts": {
     "index": "node index.js",
+    "server": "node server-router.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Mariano Caceres",
