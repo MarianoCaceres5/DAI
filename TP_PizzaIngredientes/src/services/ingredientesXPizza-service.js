@@ -17,9 +17,29 @@ export default class IngredientesXPizzaService {
                 returnEntity = result.recordsets[0];
         } catch (e){
             //console.log(e);
-            CopiaError(e.toString() + " AT PizzaService/GetById");
+            CopiaError(e.toString() + " AT IngredientesXPizza/GetByIdPizza");
         }
         return returnEntity;        
     }
+
+    getAll = async () =>{
+        let returnEntity = null;
+        console.log('GetAllIngredientesPorPizza')
+        try{
+            let pool = await sql.connect(config);
+            let result = await pool.request()
+                .query(`SELECT Pizzas.Nombre as Pizza, Ingredientes.Nombre as Ingrediente, IngredientesXPizzas.Cantidad, Unidades.Nombre as Unidad from IngredientesXPizzas 
+                inner join Ingredientes on Ingredientes.Id = IngredientesXPizzas.IdIngrediente
+                inner join Unidades on Unidades.Id = IngredientesXPizzas.IdUnidad
+                inner join Pizzas on Pizzas.Id = IngredientesXPizzas.IdPizza`);
+                returnEntity = result.recordsets[0];
+        } catch (e){
+            //console.log(e);
+            CopiaError(e.toString() + " AT IngredientesXPizza/GetAll");
+        }
+        return returnEntity;        
+    }
+
+    // PREGUNTAR COMO SERIA UN INSERT
 }
 

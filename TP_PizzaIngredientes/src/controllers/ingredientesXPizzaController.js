@@ -18,4 +18,17 @@ ingredientesXPizzaRouter.get('/:id', async (req, res) =>{
     }
 })
 
+ingredientesXPizzaRouter.get('', async (req, res) =>{
+    try{
+        let ingredientes = await svc.getAll();
+        if(ingredientes !== null){
+            res.status(200).send(ingredientes);
+        }else{
+            res.status(404).send('<p>No se encontraron los ingredientes</p>');
+        }
+    }catch(e){
+        console.log(e);
+    }
+})
+
 export default ingredientesXPizzaRouter;
