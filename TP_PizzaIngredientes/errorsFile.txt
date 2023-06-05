@@ -107,3 +107,6 @@ RequestError: Validation failed for parameter 'nombre'. Invalid string. AT Ingre
 RequestError: Validation failed for parameter 'nombre'. Invalid string. AT IngredientesService/Update
 RequestError: The DELETE statement conflicted with the REFERENCE constraint "FK_IngredientesXPizzas_Ingredientes". The conflict occurred in database "DAI-Pizzas", table "dbo.IngredientesXPizzas", column 'IdIngrediente'. AT IngredientesService/DeleteById
 RequestError: The DELETE statement conflicted with the REFERENCE constraint "FK_IngredientesXPizzas_Ingredientes". The conflict occurred in database "DAI-Pizzas", table "dbo.IngredientesXPizzas", column 'IdIngrediente'. AT IngredientesService/DeleteById
+RequestError: Invalid column name 'Ingredientes'. AT PizzaService/GetAll
+ReferenceError: wait is not defined AT PizzaService/GetAll
+TypeError [ERR_INVALID_ARG_TYPE]: The "callback" argument must be of type function. Received undefined AT PizzaService/GetAll

@@ -8,7 +8,8 @@ const pizzaRouter = new Router();
 
 pizzaRouter.get('', async (req, res) =>{
     try{
-        let listaPizzas = await pizzaService.getAll((req.query.top == undefined ? null : req.query.top), (req.query.orderField == undefined ? null : req.query.orderField), (req.query.sortOrder == undefined ? null : req.query.sortOrder));
+        let traerIngredientes = (typeof req.query.traerIngredientes !== 'undefined' && req.query.traerIngredientes.toLowerCase() === 'true');
+        let listaPizzas = await pizzaService.getAll((req.query.top == undefined ? null : req.query.top), (req.query.orderField == undefined ? null : req.query.orderField), (req.query.sortOrder == undefined ? null : req.query.sortOrder), traerIngredientes);
         if(listaPizzas != null){
             res.status(200).send(listaPizzas);
         }else{

@@ -4,7 +4,7 @@ import CopiaError from "../modules/log-helper.js";
 import IngredientesXPizzaService from "./ingredientesXPizza-service.js";
 
 export default class PizzaService {
-    getAll = async (top, orderField, sortOrder) =>{
+    getAll = async (top, orderField, sortOrder, traerIngredientes) =>{
         let listaPizzas = null;
         console.log('GetAll')
         try{
@@ -12,15 +12,19 @@ export default class PizzaService {
             let result = await pool.request()
 
                 .query('SELECT ' + (top == null ? '' : 'TOP ' + top) + ' * FROM Pizzas ' + (orderField == null ? 'ORDER BY Id' : 'ORDER BY ' + orderField) + ' ' + (sortOrder == null ? '' : '' + sortOrder));
-                
                 //.query('exec sp_GetAll');
-            listaPizzas = result.recordsets[0];
+            listaPizzas = result.recordsets[0];       
+
+            if (listaPizzas !== null && traerIngredientes === true){
+                let svc = new IngredientesXPizzaService();
+                for(let i = 0; i < listaPizzas.length; i++){
+                    listaPizzas[i].Ingredientes = await svc.getByIdPizza(listaPizzas[i].Id);
+                }                
+            }               
         } catch (e){
             //console.log(e);
             CopiaError(e.toString() + " AT PizzaService/GetAll");
-            
-        }
-        //console.log(listaPizzas);
+        } 
         return listaPizzas;
         
     }
@@ -40,7 +44,7 @@ export default class PizzaService {
             if (returnPizza !== null && traerIngredientes === true){
                 let svc = new IngredientesXPizzaService();
                 returnPizza.Ingredientes = await svc.getByIdPizza(returnPizza.Id);                
-            }
+            }   
         } catch (e){
             CopiaError(e.toString() + " AT PizzaService/GetById");
         }
