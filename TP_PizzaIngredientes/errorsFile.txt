@@ -110,3 +110,5 @@ RequestError: The DELETE statement conflicted with the REFERENCE constraint "FK_
 RequestError: Invalid column name 'Ingredientes'. AT PizzaService/GetAll
 ReferenceError: wait is not defined AT PizzaService/GetAll
 TypeError [ERR_INVALID_ARG_TYPE]: The "callback" argument must be of type function. Received undefined AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
