@@ -38,7 +38,7 @@ usuariosRouter.post('/login', async (req, res) =>{
         if(usuarioActualizado != null){
             res.status(200).send(usuarioActualizado);
         }else{
-            res.status(404).send('<p>No se pudo logear</p>');   
+            res.status(404).send('<p>No fue posible realizar el login</p>');   
         }
     }catch(e){
         console.log(e);        

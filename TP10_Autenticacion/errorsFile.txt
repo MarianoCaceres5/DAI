@@ -112,3 +112,14 @@ ReferenceError: wait is not defined AT PizzaService/GetAll
 TypeError [ERR_INVALID_ARG_TYPE]: The "callback" argument must be of type function. Received undefined AT PizzaService/GetAll
 ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
 ConnectionError: Login failed for user 'Pizzas'. AT PizzaService/GetAll
+RequestError: Validation failed for parameter 'pToken'. Invalid number. AT UsuariosService/UpdateToken
+RequestError: Validation failed for parameter 'pToken'. Invalid number. AT UsuariosService/UpdateToken
+RequestError: Validation failed for parameter 'pToken'. Invalid number. AT UsuariosService/UpdateToken
+RequestError: Validation failed for parameter 'pTokenExpirationDate'. Invalid date. AT UsuariosService/UpdateToken
+RequestError: Validation failed for parameter 'pTokenExpirationDate'. Invalid date. AT UsuariosService/UpdateToken
+RequestError: Validation failed for parameter 'pTokenExpirationDate'. Invalid date. AT UsuariosService/UpdateToken
+RequestError: Validation failed for parameter 'pTokenExpirationDate'. Invalid date. AT UsuariosService/UpdateToken
+ReferenceError: Cannot access 'tokenExpirationDate' before initialization AT UsuariosService/UpdateToken
+RequestError: Validation failed for parameter 'pTokenExpirationDate'. Invalid date. AT UsuariosService/UpdateToken
+ReferenceError: tokenExpirationDate is not defined AT UsuariosService/UpdateToken
+TypeError: Cannot read properties of undefined (reading 'Id') AT UsuariosService/Login

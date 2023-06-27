@@ -4,15 +4,14 @@ import CopiaError from "../modules/log-helper.js";
 import IngredientesXPizzaService from "./ingredientesXPizza-service.js";
 
 export default class PizzaService {
-    getAll = async (top, orderField, sortOrder, traerIngredientes) =>{
+    getAll = async (top, orderField, sortOrder, traerIngredientes, traerUnidades) =>{
         let listaPizzas = null;
         console.log('GetAll')
         try{
             let pool = await sql.connect(config);
             let result = await pool.request()
-
-                .query('SELECT ' + (top == null ? '' : 'TOP ' + top) + ' * FROM Pizzas ' + (orderField == null ? 'ORDER BY Id' : 'ORDER BY ' + orderField) + ' ' + (sortOrder == null ? '' : '' + sortOrder));
-                //.query('exec sp_GetAll');
+                //.query('SELECT ' + (top == null ? '' : 'TOP ' + top) + ' * FROM Pizzas ' + (orderField == null ? 'ORDER BY Id' : 'ORDER BY ' + orderField) + ' ' + (sortOrder == null ? '' : '' + sortOrder));
+                .query('exec sp_GetAll');
             listaPizzas = result.recordsets[0];       
 
             if (listaPizzas !== null && traerIngredientes === true){
