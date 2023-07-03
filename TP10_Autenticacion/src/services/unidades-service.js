@@ -26,7 +26,7 @@ export default class UnidadesService {
             let result = await pool.request() 
                 .input('pId', sql.Int, id)
                 .query(`SELECT * FROM Unidades WHERE Id = @pId`);
-                returnUnidad = result.recordsets[0];
+                returnUnidad = result.recordsets[0][0];
         } catch (e){
             //console.log(e);
             CopiaError(e.toString() + " AT UnidadesService/GetById");

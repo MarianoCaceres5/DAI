@@ -123,3 +123,47 @@ ReferenceError: Cannot access 'tokenExpirationDate' before initialization AT Usu
 RequestError: Validation failed for parameter 'pTokenExpirationDate'. Invalid date. AT UsuariosService/UpdateToken
 ReferenceError: tokenExpirationDate is not defined AT UsuariosService/UpdateToken
 TypeError: Cannot read properties of undefined (reading 'Id') AT UsuariosService/Login
+TypeError: Cannot read properties of null (reading 'Id') AT UsuariosService/Login
+ConnectionError: Login failed for user 'Pizzas'. AT UsuariosService/GetUsuarioByNamePassword
+ConnectionError: Login failed for user 'Pizzas'. AT UsuariosService/GetUsuarioByNamePassword
+TypeError: Cannot read properties of null (reading 'Id') AT UsuariosService/Login
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+TypeError: Cannot read properties of undefined (reading 'length') AT PizzaService/GetAll
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+TypeError: Cannot read properties of undefined (reading 'length') AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza

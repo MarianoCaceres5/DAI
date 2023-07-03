@@ -9,7 +9,8 @@ const pizzaRouter = new Router();
 pizzaRouter.get('', async (req, res) =>{
     try{
         let traerIngredientes = (typeof req.query.traerIngredientes !== 'undefined' && req.query.traerIngredientes.toLowerCase() === 'true');
-        let listaPizzas = await pizzaService.getAll((req.query.top == undefined ? null : req.query.top), (req.query.orderField == undefined ? null : req.query.orderField), (req.query.sortOrder == undefined ? null : req.query.sortOrder), traerIngredientes);
+        let traerUnidades = (typeof req.query.traerUnidades !== 'undefined' && req.query.traerUnidades.toLowerCase() === 'true');
+        let listaPizzas = await pizzaService.getAll((req.query.top == undefined ? null : req.query.top), (req.query.orderField == undefined ? null : req.query.orderField), (req.query.sortOrder == undefined ? null : req.query.sortOrder), traerIngredientes, traerUnidades);
         if(listaPizzas != null){
             res.status(200).send(listaPizzas);
         }else{
@@ -23,7 +24,8 @@ pizzaRouter.get('', async (req, res) =>{
 pizzaRouter.get('/:id', async (req, res) =>{
     try{
         let traerIngredientes = (typeof req.query.traerIngredientes !== 'undefined' && req.query.traerIngredientes.toLowerCase() === 'true');
-        let pizzaElegida = await pizzaService.getById(req.params.id, traerIngredientes);
+        let traerUnidades = (typeof req.query.traerUnidades !== 'undefined' && req.query.traerUnidades.toLowerCase() === 'true');
+        let pizzaElegida = await pizzaService.getById(req.params.id, traerIngredientes, traerUnidades);
         if(pizzaElegida !== null){
             res.status(200).send(pizzaElegida);
         }else{

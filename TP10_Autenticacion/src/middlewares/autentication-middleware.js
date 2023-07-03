@@ -17,13 +17,13 @@ export default class AutenticationMiddleware {
                     if(usuario.TokenExpirationDate > new Date()){                        
                         next();
                     }else{
-                        res.status(401).send('Unauthorized, expiró el token');
+                        res.status(401).send('Unauthorized: expiró el token');
                     }
                 }else{
-                    res.status(401).send('Unauthorized, no se encontró ningún usuario con ese token');
+                    res.status(401).send('Unauthorized: no se encontró ningún usuario con ese token');
                 }
             }else{
-                res.status(401).send('Unauthorized, es necesario un token');
+                res.status(401).send('Unauthorized: es necesario un token');
             }
         }                
     }    

@@ -72,7 +72,7 @@ export default class UsuariosService {
 
             let token = randomUUID();
             let tokenExpirationDate = new Date();
-            tokenExpirationDate.setMinutes(tokenExpirationDate.getMinutes() + 20); //suma 20 min al tiempo actual;            
+            tokenExpirationDate.setMinutes(tokenExpirationDate.getMinutes() + 15); //suma 20 min al tiempo actual;            
 
             let pool = await sql.connect(config);
             let result = await pool.request()  

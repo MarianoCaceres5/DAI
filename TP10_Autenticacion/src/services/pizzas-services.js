@@ -2,6 +2,7 @@ import config from "../../dbconfig.js";
 import sql from 'mssql';
 import CopiaError from "../modules/log-helper.js";
 import IngredientesXPizzaService from "./ingredientesXPizza-service.js";
+import UnidadesService from "./unidades-service.js";
 
 export default class PizzaService {
     getAll = async (top, orderField, sortOrder, traerIngredientes, traerUnidades) =>{
@@ -17,7 +18,7 @@ export default class PizzaService {
             if (listaPizzas !== null && traerIngredientes === true){
                 let svc = new IngredientesXPizzaService();
                 for(let i = 0; i < listaPizzas.length; i++){
-                    listaPizzas[i].Ingredientes = await svc.getByIdPizza(listaPizzas[i].Id);
+                    listaPizzas[i].Ingredientes = await svc.getByIdPizza(listaPizzas[i].Id, traerUnidades);              
                 }                
             }               
         } catch (e){
@@ -28,7 +29,7 @@ export default class PizzaService {
         
     }
 
-    getById = async (id, traerIngredientes) =>{
+    getById = async (id, traerIngredientes, traerUnidades) =>{
         let returnPizza = null;
         console.log('GetById')
         try{
@@ -42,7 +43,7 @@ export default class PizzaService {
 
             if (returnPizza !== null && traerIngredientes === true){
                 let svc = new IngredientesXPizzaService();
-                returnPizza.Ingredientes = await svc.getByIdPizza(returnPizza.Id);                
+                returnPizza.Ingredientes = await svc.getByIdPizza(returnPizza.Id, traerUnidades);    
             }   
         } catch (e){
             CopiaError(e.toString() + " AT PizzaService/GetById");
@@ -56,13 +57,7 @@ export default class PizzaService {
         console.log('InsertPizza')
         try{
             let pool = await sql.connect(config);
-            let result = await pool.request()              
-                // .input('Nombre', sql.VarChar, pizza.nombre)
-                // .input('LibreGluten', sql.Bit, pizza.libreGluten)
-                // .input('Importe', sql.Float, pizza.importe)
-                // .input('Descripcion', sql.VarChar, pizza.descripcion)
-                // .query('SET NOCOUNT ON INSERT INTO Pizzas(Nombre, LibreGluten, Importe, Descripcion) VALUES (@Nombre,@LibreGluten,@Importe,@Descripcion)');
-
+            let result = await pool.request()
                 .input('nombre', sql.VarChar, pizza.nombre)
                 .input('libreGluten', sql.Bit, pizza.libreGluten)
                 .input('importe', sql.Float, pizza.importe)
