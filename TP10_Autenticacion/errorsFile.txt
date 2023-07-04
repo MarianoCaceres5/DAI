@@ -167,3 +167,4 @@ ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
 ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
 ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
 ReferenceError: i is not defined AT IngredientesXPizza/GetByIdPizza
+RequestError: The DELETE statement conflicted with the REFERENCE constraint "FK_IngredientesXPizzas_Pizzas". The conflict occurred in database "DAI-Pizzas", table "dbo.IngredientesXPizzas", column 'IdPizza'. AT PizzaService/DeleteById
