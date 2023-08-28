@@ -1,8 +1,22 @@
-import { View, Text, TextInput, TouchableOpacity } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { useState } from 'react';
 import React from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
 
 export default function BlueScreen({navigation}) {
+
+  const [email, setEmail] = useState('')
+  const [contraseña, setContraseña] = useState(0)
+
+  const handleLogin = () => {
+    // console.log(email, contraseña)
+    if (email == 'nano' && contraseña == 123){
+      navigation.navigate('GreenScreen');
+    }else{
+      Alert.alert('Usuario o contraseña incorrectos');
+    }
+  }
+
   return (
     <SafeAreaView style={[styles.container]}>
       <Text style={[styles.textLabel]}>Email</Text>
@@ -11,6 +25,8 @@ export default function BlueScreen({navigation}) {
         maxLength={20}
         style={styles.input}
         placeholder="Ingrese su email"
+        value={email}
+        onChangeText={input => setEmail(input)}
       />
       <Text style={[styles.textLabel]}>Contraseña</Text>
       <TextInput
@@ -19,8 +35,9 @@ export default function BlueScreen({navigation}) {
         style={styles.input}
         keyboardType="numeric"
         placeholder="Ingrese su contraseña"
+        onChangeText={input => setContraseña(input)}
       />
-      <TouchableOpacity style={[styles.button1]} onPress={() => navigation.navigate('GreenScreen') }><Text style={[styles.textButton]}>Log Data</Text></TouchableOpacity>
+      <TouchableOpacity style={[styles.button1]} onPress={() => handleLogin()}><Text style={[styles.textButton]}>Log In</Text></TouchableOpacity>
     </SafeAreaView>
   )
 }
