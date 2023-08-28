@@ -1,16 +1,17 @@
-import { View, Text, TextInput, TouchableOpacity, Alert } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native'
 import { useState } from 'react';
 import React from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
+import messi from '../../assets/messi.jpg'
 
 export default function BlueScreen({navigation}) {
 
   const [email, setEmail] = useState('')
-  const [contraseña, setContraseña] = useState(0)
+  const [clave, setClave] = useState(0)
 
   const handleLogin = () => {
     // console.log(email, contraseña)
-    if (email == 'nano' && contraseña == 123){
+    if (email.toLowerCase() == 'nano' && clave == 123){
       navigation.navigate('GreenScreen');
     }else{
       Alert.alert('Usuario o contraseña incorrectos');
@@ -19,6 +20,7 @@ export default function BlueScreen({navigation}) {
 
   return (
     <SafeAreaView style={[styles.container]}>
+      <Image source={messi} style={styles.logo}/>
       <Text style={[styles.textLabel]}>Email</Text>
       <TextInput
         editable
@@ -35,7 +37,7 @@ export default function BlueScreen({navigation}) {
         style={styles.input}
         keyboardType="numeric"
         placeholder="Ingrese su contraseña"
-        onChangeText={input => setContraseña(input)}
+        onChangeText={input => setClave(input)}
       />
       <TouchableOpacity style={[styles.button1]} onPress={() => handleLogin()}><Text style={[styles.textButton]}>Log In</Text></TouchableOpacity>
     </SafeAreaView>
@@ -43,6 +45,11 @@ export default function BlueScreen({navigation}) {
 }
 
 const styles = StyleSheet.create({
+  logo: {
+    width: '75%',
+    height: '40%',
+    marginBottom: 20
+  },
   container: {
     flex: 1,
     backgroundColor: '#fff',

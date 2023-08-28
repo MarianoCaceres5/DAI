@@ -16,7 +16,8 @@ export default function App() {
         initialRouteName="Login"
         screenOptions={{
           orientation: 'portrait',
-          headerShown: false
+          headerShown: false,
+          animation: 'none', 
         }}>        
         <Stack.Screen
           name="Login"

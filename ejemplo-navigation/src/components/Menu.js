@@ -5,22 +5,22 @@ export default function Menu({ navigation }) {
   return (
     <View style={[styles.menu]}>
       <Pressable
-        style={[styles.buttonGreen]}
+        style={[styles.button]}
         onPress={() => navigation.navigate("GreenScreen")}
       >
-        <Text style={[styles.textPressable]}>Green</Text>
+        <Text style={[styles.textGreen]}>1</Text>
       </Pressable>
       <Pressable
-        style={[styles.buttonRed]}
+        style={[styles.button]}
         onPress={() => navigation.navigate("RedScreen")}
       >
-        <Text style={[styles.textPressable]}>Red</Text>
+        <Text style={[styles.textRed]}>2</Text>
       </Pressable>
       <Pressable
-        style={[styles.buttonBlue]}
+        style={[styles.button]}
         onPress={() => navigation.navigate("BlueScreen")}
       >
-        <Text style={[styles.textPressable]}>Blue</Text>
+        <Text style={[styles.textBlue]}>3</Text>
       </Pressable>
     </View>
   );
@@ -37,15 +37,20 @@ const styles = StyleSheet.create({
     height: 100,
     position: "absolute",
     bottom: 0,
-    borderTopWidth: 3,
-    botderRadius: 10,
-    borderTopColor: "white",
   },
-  textPressable: {
+  textGreen: {
     textAlign: "center",
-    color: 'white'
+    color: 'green'
   },
-  buttonGreen: {
+  textRed: {
+    textAlign: "center",
+    color: 'red'
+  },
+  textBlue: {
+    textAlign: "center",
+    color: 'blue'
+  },
+  button: {
     width: "33%",
     height: "100%",
     display: "flex",
@@ -53,26 +58,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     justifyContent: "center",
-    backgroundColor: "green",
-  },
-  buttonRed: {
-    width: "33%",
-    height: "100%",
-    display: "flex",
-    backgroundColor: "white",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "red",
-  },
-  buttonBlue: {
-    width: "33%",
-    height: "100%",
-    display: "flex",
-    backgroundColor: "white",
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "center",
-    backgroundColor: "blue",
+    borderWidth: 1,
+    borderColor: "black",
   },
 });
