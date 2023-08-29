@@ -7,11 +7,11 @@ import messi from '../../assets/messi.jpg'
 export default function BlueScreen({navigation}) {
 
   const [email, setEmail] = useState('')
-  const [clave, setClave] = useState(0)
+  const [clave, setClave] = useState('')
 
   const handleLogin = () => {
     // console.log(email, contraseña)
-    if (email.toLowerCase() == 'nano' && clave == 123){
+    if (email.toLowerCase() == 'mariano' && clave.toLowerCase() == 'caceres'){
       navigation.navigate('GreenScreen');
     }else{
       Alert.alert('Usuario o contraseña incorrectos');
@@ -35,7 +35,7 @@ export default function BlueScreen({navigation}) {
         editable
         maxLength={20}
         style={styles.input}
-        keyboardType="numeric"
+        value={clave}
         placeholder="Ingrese su contraseña"
         onChangeText={input => setClave(input)}
       />

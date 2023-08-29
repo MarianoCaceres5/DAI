@@ -1,5 +1,8 @@
-import { View, Text, StyleSheet, Pressable } from "react-native";
+import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import React from "react";
+import redIcon from '../../assets/redIcon.png'
+import greenIcon from '../../assets/greenIcon.png'
+import blueIcon from '../../assets/blueIcon.png'
 
 export default function Menu({ navigation }) {
   return (
@@ -8,25 +11,32 @@ export default function Menu({ navigation }) {
         style={[styles.button]}
         onPress={() => navigation.navigate("GreenScreen")}
       >
-        <Text style={[styles.textGreen]}>1</Text>
+        {/* <Text style={[styles.textGreen]}>1</Text> */}
+        <Image source={greenIcon} style={styles.icon}/>
       </Pressable>
       <Pressable
         style={[styles.button]}
         onPress={() => navigation.navigate("RedScreen")}
       >
-        <Text style={[styles.textRed]}>2</Text>
+        {/* <Text style={[styles.textRed]}>2</Text> */}
+        <Image source={redIcon} style={styles.icon}/>
       </Pressable>
       <Pressable
         style={[styles.button]}
         onPress={() => navigation.navigate("BlueScreen")}
       >
-        <Text style={[styles.textBlue]}>3</Text>
+        <Image source={blueIcon} style={styles.icon}/>
       </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
+  icon: {
+    height: 80,
+    width: 80
+
+  },  
   menu: {
     display: "flex",
     backgroundColor: "white",
