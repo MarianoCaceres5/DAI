@@ -2,10 +2,16 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native'
 import React from 'react'
 
 export default function Boton({titulo, onPress, style}) {
-    console.log(style)
+  
+  const handleOnPress = () => {
+    const date = new Date();
+    console.log('FECHA Y HORA:', date.toUTCString());
+    onPress();
+  }
+
   return (
     <View>
-      <TouchableOpacity style={[styles.button, style]} onPress={() => onPress()}><Text style={[styles.textButton]}>{titulo}</Text></TouchableOpacity>
+      <TouchableOpacity style={[styles.button, style]} onPress={() => handleOnPress()}><Text style={[styles.textButton]}>{titulo}</Text></TouchableOpacity>
     </View>
   )
 }
