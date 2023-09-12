@@ -1,35 +1,46 @@
 import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native'
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import React from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
 import Boton from '../components/Boton';
 import messi from '../../assets/messi.jpg'
+import UsuarioService from '../services/UsuarioService'
 
 export default function BlueScreen({navigation}) {
 
-  const [email, setEmail] = useState('')
-  const [clave, setClave] = useState('')
+  const [clave, setClave] = useState('');
+  const [nombre, setNombre] = useState('');
 
-  const handleLogin = () => {
-    // console.log(email, contraseña)
-    if (email.toLowerCase() == 'mariano' && clave.toLowerCase() == 'caceres'){
-      navigation.navigate('GreenScreen');
+  const passwordRef = useRef();
+  let usuarioService = new UsuarioService();
+
+  const handleLogin = async() => {
+    if (nombre.toLowerCase() !== '' && clave.toLowerCase() !== ''){
+      if (nombre.toLowerCase() == 'mariano' && clave.toLowerCase() == 'caceres'){
+        await usuarioService.almacenarCredenciales(nombre, clave);
+        navigation.navigate('GreenScreen');
+      }else{
+        Alert.alert('Usuario o contraseña incorrectos');
+      }      
     }else{
-      Alert.alert('Usuario o contraseña incorrectos');
+      Alert.alert('Complete los campos para ingresar');
     }
   }
 
   return (
     <SafeAreaView style={[styles.container]}>
       <Image source={messi} style={styles.logo}/>
-      <Text style={[styles.textLabel]}>Email</Text>
+      <Text style={[styles.textLabel]}>Nombre</Text>
       <TextInput
         editable
         maxLength={20}
         style={styles.input}
-        placeholder="Ingrese su email"
-        value={email}
-        onChangeText={input => setEmail(input)}
+        placeholder="Ingrese su usuario (mariano)"
+        value={nombre}
+        onChangeText={input => setNombre(input)}
+        returnKeyType='next'
+        onSubmitEditing= {() => {passwordRef.current.focus();}}
+        blurOnSubmit={false}
       />
       <Text style={[styles.textLabel]}>Contraseña</Text>
       <TextInput
@@ -37,8 +48,10 @@ export default function BlueScreen({navigation}) {
         maxLength={20}
         style={styles.input}
         value={clave}
-        placeholder="Ingrese su contraseña"
+        placeholder="Ingrese su contraseña (caceres)"
         onChangeText={input => setClave(input)}
+        ref={passwordRef}
+        secureTextEntry
       />
       <Boton onPress={handleLogin} titulo='INGRESAR' style={styles.button} />
     </SafeAreaView>

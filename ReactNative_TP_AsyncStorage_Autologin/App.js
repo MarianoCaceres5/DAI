@@ -14,7 +14,7 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Login"
+        initialRouteName="SplashScreen"
         screenOptions={{
           orientation: 'portrait',
           headerShown: false,
