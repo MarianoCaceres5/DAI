@@ -10,7 +10,6 @@ export default function GreenScreen({navigation}) {
 
   const alertAsyncStorage = async () => {
     let credenciales = await usuarioService.obtenerCredenciales();
-    console.log(credenciales)
     Alert.alert('ASYNCSTORAGE', JSON.stringify(credenciales));
   }
 
