@@ -16,7 +16,7 @@ export default function SplashScreen({navigation}) {
   }
 
   useEffect(() => {
-    const myTimeout = setTimeout(verificarInicioSesion, 3000);
+    setTimeout(verificarInicioSesion, 3000);
   }, [])
 
   return (

@@ -8,18 +8,14 @@ const PASSWORD_KEY='LOGIN_password';
 export default class UsuarioService{ 
     login = async(userName, password) => { 
         //Obtiene las credenciales almacenadas e intenta loguearse. 
-        try {
-            let usuario = await AsyncStorage.getItem(USERNAME_KEY);
-            let contrasena = await AsyncStorage.getItem(PASSWORD_KEY);
-            let isValid;
-            
-            if(usuario === userName && contrasena === password){
+        let isValid;
+        try {            
+            if(userName == 'mariano' && password == 'caceres'){
                 isValid = true;
             }else{
-                isValid = false
+                isValid = false;
             }             
             return isValid; 
-
         } catch(e){
             return false;
         }

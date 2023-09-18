@@ -16,7 +16,7 @@ export default function BlueScreen({navigation}) {
 
   const handleLogin = async() => {
     if (nombre.toLowerCase() !== '' && clave.toLowerCase() !== ''){
-      if (nombre.toLowerCase() == 'mariano' && clave.toLowerCase() == 'caceres'){
+      if (await usuarioService.login(nombre.toLowerCase(), clave.toLowerCase())){
         await usuarioService.almacenarCredenciales(nombre, clave);
         navigation.navigate('GreenScreen');
       }else{
