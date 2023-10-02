@@ -1,10 +1,11 @@
-import { View, Text, TextInput, TouchableOpacity, Alert, Image } from 'react-native'
+import { View, Text, TextInput, TouchableOpacity, Alert, Image, ToastAndroid } from 'react-native'
 import { useState, useRef } from 'react';
 import React from 'react'
 import { SafeAreaView, StyleSheet } from 'react-native'
 import Boton from '../components/Boton';
 import messi from '../../assets/messi.jpg'
 import UsuarioService from '../services/UsuarioService'
+import MessageConstants from '../constants/MessageConstants';
 
 export default function BlueScreen({navigation}) {
 
@@ -17,13 +18,14 @@ export default function BlueScreen({navigation}) {
   const handleLogin = async() => {
     if (nombre.toLowerCase() !== '' && clave.toLowerCase() !== ''){
       if (await usuarioService.login(nombre.toLowerCase(), clave.toLowerCase())){
+        ToastAndroid.show(MessageConstants.MSG_LOGIN_EXITOSO, ToastAndroid.SHORT);
         await usuarioService.almacenarCredenciales(nombre, clave);
         navigation.navigate('GreenScreen');
       }else{
-        Alert.alert('Usuario o contraseña incorrectos');
+        Alert.alert(MessageConstants.MSG_USUARIO_O_CLAVE_INVALIDA);
       }      
     }else{
-      Alert.alert('Complete los campos para ingresar');
+      Alert.alert(MessageConstants.MSG_CAMPOS_INCOMPLETOS);
     }
   }
 

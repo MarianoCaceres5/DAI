@@ -3,6 +3,7 @@ import React from 'react'
 import Menu from '../components/Menu';
 import Boton from '../components/Boton';
 import UsuarioService from '../services/UsuarioService';
+import MessageConstants from '../constants/MessageConstants';
 
 export default function RedScreen({navigation}) {
 
@@ -10,7 +11,7 @@ export default function RedScreen({navigation}) {
 
   const eliminarAsyncStorage = async () => {
     await usuarioService.eliminarCredenciales();
-    ToastAndroid.show('Se han eliminado los datos', ToastAndroid.SHORT);
+    ToastAndroid.show(MessageConstants.MSG_DATOS_ELIMINADOS, ToastAndroid.SHORT);
   }
 
   return (
