@@ -4,6 +4,8 @@ import Menu from '../components/Menu'
 import { useState } from 'react'
 import Boton from '../components/Boton'
 import DataService from '../services/DataService'
+import ModalMensaje from '../components/ModalMensaje'
+import MessageConstants from '../constants/MessageConstants'
 
 let dataService = new DataService();
 
@@ -12,17 +14,20 @@ export default function Configuration({navigation}) {
   const [telefono, setTelefono] = useState();
   const [urlVideo, setUrlVideo] = useState();
   const [urlMusica, setUrlMusica] = useState();
+  const [modalVisible, setModalVisible] = useState(false);
+  const [mensajeModal, setMensajeModal] = useState('');
 
   let handleSubmit = async () => {
     if(telefono && urlMusica && urlVideo){
       if(await dataService.almacenarDatos(telefono, urlVideo, urlMusica)){
-
+        setMensajeModal(MessageConstants.MSG_DATOS_GUARDADOS);
       }else{
-  
+        setMensajeModal(MessageConstants.MSG_GUARDADO_FALLIDO);
       }
     }else{
-
-    }    
+      setMensajeModal(MessageConstants.MSG_CAMPOS_INCOMPLETOS);
+    }   
+    setModalVisible(true) 
   }
 
   return (
@@ -52,6 +57,7 @@ export default function Configuration({navigation}) {
         onChangeText={input => setUrlMusica(input)}
       />
       <Boton onPress={handleSubmit} titulo='INGRESAR DATOS' style={styles.button} />
+      <ModalMensaje mensaje={mensajeModal} modalVisible={modalVisible} setModalVisible={setModalVisible}/>
       <Menu navigation={navigation}/>
     </SafeAreaView>
   )

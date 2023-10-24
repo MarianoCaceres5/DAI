@@ -4,8 +4,6 @@ import React from 'react'
 export default function Boton({titulo, onPress, style}) {
   
   const handleOnPress = () => {
-    const date = new Date();
-    console.log('FECHA Y HORA:', date.toUTCString());
     onPress();
   }
 

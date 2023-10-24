@@ -1,9 +1,8 @@
 
 const MessageConstants = {
-    MSG_USUARIO_O_CLAVE_INVALIDA: 'Usuario o contraseña incorrectos',
-    MSG_LOGIN_EXITOSO: 'Ingresando a la aplicación...',
-    MSG_CAMPOS_INCOMPLETOS: 'Complete todos los campos para ingresar',
-    MSG_DATOS_ELIMINADOS: 'Se han eliminado los datos',
+    MSG_CAMPOS_INCOMPLETOS: 'Complete todos los campos',
+    MSG_GUARDADO_FALLIDO: 'Los datos no pudieron ser procesados',
+    MSG_DATOS_GUARDADOS: 'Se han guardado los datos',
 }
 
 export default MessageConstants;
