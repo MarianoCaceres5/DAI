@@ -1,42 +1,44 @@
 import { View, Text, StyleSheet, Pressable, Image } from "react-native";
 import React from "react";
-import redIcon from '../../assets/redIcon.png'
-import greenIcon from '../../assets/greenIcon.png'
-import blueIcon from '../../assets/blueIcon.png'
 
 export default function Menu({ navigation }) {
   return (
     <View style={[styles.menu]}>
       <Pressable
         style={[styles.button]}
-        onPress={() => navigation.navigate("GreenScreen")}
+        onPress={() => navigation.navigate("BackgroundImageSelector")}
       >
-        {/* <Text style={[styles.textGreen]}>1</Text> */}
-        <Image source={greenIcon} style={styles.icon}/>
+        <Text style={[styles.text]}>Background</Text>        
       </Pressable>
       <Pressable
         style={[styles.button]}
-        onPress={() => navigation.navigate("RedScreen")}
+        onPress={() => navigation.navigate("UrlPlayer")}
       >
-        {/* <Text style={[styles.textRed]}>2</Text> */}
-        <Image source={redIcon} style={styles.icon}/>
+        <Text style={[styles.text]}>Urls</Text>        
       </Pressable>
       <Pressable
         style={[styles.button]}
-        onPress={() => navigation.navigate("BlueScreen")}
+        onPress={() => navigation.navigate("Home")}
       >
-        <Image source={blueIcon} style={styles.icon}/>
+        <Text style={[styles.text]}>Home</Text>        
+      </Pressable>
+      <Pressable
+        style={[styles.button]}
+        onPress={() => navigation.navigate("About")}
+      >
+        <Text style={[styles.text]}>About</Text>        
+      </Pressable>
+      <Pressable
+        style={[styles.button]}
+        onPress={() => navigation.navigate("Configuration")}
+      >
+        <Text style={[styles.text]}>Configuration</Text>        
       </Pressable>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  icon: {
-    height: 80,
-    width: 80
-
-  },  
   menu: {
     display: "flex",
     backgroundColor: "white",
@@ -48,20 +50,12 @@ const styles = StyleSheet.create({
     position: "absolute",
     bottom: 0,
   },
-  textGreen: {
+  text: {
     textAlign: "center",
-    color: 'green'
-  },
-  textRed: {
-    textAlign: "center",
-    color: 'red'
-  },
-  textBlue: {
-    textAlign: "center",
-    color: 'blue'
+    color: 'black',
   },
   button: {
-    width: "33%",
+    width: "20%",
     height: "100%",
     display: "flex",
     backgroundColor: "white",
@@ -70,5 +64,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     borderWidth: 1,
     borderColor: "black",
+    paddingHorizontal: 10
   },
 });
