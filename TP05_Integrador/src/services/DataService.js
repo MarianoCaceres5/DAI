@@ -5,6 +5,7 @@ import AsyncStorage from "@react-native-async-storage/async-storage";
 const TELEFONO_KEY='telefono';
 const VIDEO_KEY='video';
 const MUSICA_KEY='musica';
+const BACKGROUND_KEY='background';
 
 export default class DataService{ 
     //Elimina las credenciales almacenadas al cerrar sesión 
@@ -29,6 +30,23 @@ export default class DataService{
             console.log(e);
             return false;
         }
+    }; 
+
+    guardarBackground = async(background) => { 
+        //Almacena las credenciales en el asyncStorage
+        try {    
+            await AsyncStorage.setItem(BACKGROUND_KEY, background);  
+            return true;
+        } catch(e) {    
+            console.log(e);
+            return false;
+        }
+    }; 
+
+    obtenerBackground = async() => { 
+        let storedBackground = await AsyncStorage.getItem(BACKGROUND_KEY);
+        const returnValue = storedBackground; 
+        return returnValue; 
     }; 
 
     obtenerDatos = async() => { 

@@ -1,4 +1,4 @@
-import { View, Text, SafeAreaView, StyleSheet, Linking, Alert, Platform } from 'react-native'
+import { View, Text, SafeAreaView, StyleSheet, Linking, Alert, Platform, ImageBackground } from 'react-native'
 import React, { useState, useEffect } from 'react';
 import Menu from '../components/Menu'
 import {
@@ -19,7 +19,9 @@ export default function Home({ navigation }) {
   });
   const [subscription, setSubscription] = useState(null);
   const [modalVisible, setModalVisible] = useState(false);
+  const [success, setSuccess] = useState(false);
   const [mensajeModal, setMensajeModal] = useState('');
+  const [image, setImage] = useState(null);
 
   const _slow = () => Accelerometer.setUpdateInterval(1000);
   const _fast = () => Accelerometer.setUpdateInterval(16);
@@ -84,17 +86,27 @@ export default function Home({ navigation }) {
     setSubscription(null);
   };
 
+  let loadBackground = async () => {
+    if(JSON.parse(await dataService.obtenerBackground())){
+      let backgroundImage = JSON.parse(await dataService.obtenerBackground());
+      setImage(backgroundImage.uri);
+    }    
+  }
+
   useEffect(() => {
+    loadBackground();
     _subscribe();
     _slow();
-    return () => _unsubscribe();
+    return () => _unsubscribe();    
   }, []);
 
 
   return (
     <SafeAreaView style={[styles.container]}>
-      <Text>Agita el celular para llamar a tu contacto de emergencia</Text>
-      <ModalMensaje mensaje={mensajeModal} modalVisible={modalVisible} setModalVisible={setModalVisible} />
+      <ImageBackground source={{uri: image}} style={styles.image}>
+        <Text style={{backgroundColor:'white', fontSize: 20, width: '80%', textAlign:'center'}}>Agita el celular para llamar a tu contacto de emergencia</Text>
+        <ModalMensaje mensaje={mensajeModal} modalVisible={modalVisible} setModalVisible={setModalVisible} success={success}/>
+      </ImageBackground>
       <Menu navigation={navigation} />
     </SafeAreaView>
   )
@@ -109,5 +121,11 @@ const styles = StyleSheet.create({
     width: '100%',
     backgroundColor: '#fff',
     textAlign:'center'
+  },
+  image: {
+    width: '100%',
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });

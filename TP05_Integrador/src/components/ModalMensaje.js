@@ -2,7 +2,7 @@ import { View, Text, Vibration, Alert, ToastAndroid, StyleSheet, Modal, Pressabl
 import React from 'react'
 import { useEffect } from 'react';
 
-export default function ModalMensaje({ mensaje, modalVisible, setModalVisible  }) {
+export default function ModalMensaje({ mensaje, modalVisible, setModalVisible, success }) {
 
     useEffect(() => {
         if (modalVisible) {
@@ -20,14 +20,26 @@ export default function ModalMensaje({ mensaje, modalVisible, setModalVisible  }
                     setModalVisible(!modalVisible);
                 }}>
                 <View style={styles.centeredView}>
-                    <View style={styles.modalView}>
-                        <Text style={styles.modalText}>{mensaje}</Text>
-                        <Pressable
-                            style={[styles.button, styles.buttonClose]}
-                            onPress={() => setModalVisible(!modalVisible)}>
-                            <Text style={styles.textStyle}>Cerrar modal</Text>
-                        </Pressable>
-                    </View>
+                    {success ? (
+                        <View style={styles.modalViewSuccess}>
+                            <Text style={styles.modalText}>{mensaje}</Text>
+                            <Pressable
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => setModalVisible(!modalVisible)}>
+                                <Text style={styles.textStyle}>Cerrar modal</Text>
+                            </Pressable>
+                        </View>
+                    ) : (
+                        <View style={styles.modalViewError}>
+                            <Text style={styles.modalText}>{mensaje}</Text>
+                            <Pressable
+                                style={[styles.button, styles.buttonClose]}
+                                onPress={() => setModalVisible(!modalVisible)}>
+                                <Text style={styles.textStyle}>Cerrar modal</Text>
+                            </Pressable>
+                        </View>
+                    )}
+
                 </View>
             </Modal>
         </View>
@@ -35,9 +47,24 @@ export default function ModalMensaje({ mensaje, modalVisible, setModalVisible  }
 }
 
 const styles = StyleSheet.create({
-    modalView: {
+    modalViewSuccess: {
         margin: 20,
-        backgroundColor: 'white',
+        backgroundColor: 'green',
+        borderRadius: 20,
+        padding: 35,
+        alignItems: 'center',
+        shadowColor: '#000',
+        shadowOffset: {
+            width: 0,
+            height: 2,
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 4,
+        elevation: 5,
+    },
+    modalViewError: {
+        margin: 20,
+        backgroundColor: 'red',
         borderRadius: 20,
         padding: 35,
         alignItems: 'center',
@@ -59,7 +86,7 @@ const styles = StyleSheet.create({
         backgroundColor: '#F194FF',
     },
     buttonClose: {
-        backgroundColor: '#2196F3',
+        backgroundColor: 'black',
     },
     textStyle: {
         color: 'white',
@@ -67,6 +94,7 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     modalText: {
+        color: 'white',
         marginBottom: 15,
         textAlign: 'center',
     },
