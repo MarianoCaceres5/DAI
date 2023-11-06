@@ -5,6 +5,7 @@ import DataService from '../services/DataService';
 import Boton from '../components/Boton'
 import * as Font from 'expo-font';
 import * as Clipboard from 'expo-clipboard';
+import { BarCodeScanner } from 'expo-barcode-scanner';
 
 let dataService = new DataService();
 const NOMBRE_APP = 'Mariano Caceres'
@@ -13,6 +14,9 @@ export default function About({ navigation }) {
 
   const [image, setImage] = useState(null);
   const [fontsLoaded, setFontsLoaded] = useState(false);
+  const [hasPermission, setHasPermission] = useState(null);
+  const [scanned, setScanned] = useState(false);
+  const [scanQR, setScanQR] = useState(false);
 
   async function loadFonts() {
     await Font.loadAsync({
@@ -32,7 +36,17 @@ export default function About({ navigation }) {
     await Clipboard.setStringAsync(NOMBRE_APP);
   };
 
+  const handleBarCodeScanned = ({ type, data }) => {
+    setScanned(true);
+    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+  };
+
   useEffect(() => {
+    const getBarCodeScannerPermissions = async () => {
+      const { status } = await BarCodeScanner.requestPermissionsAsync();
+      setHasPermission(status === 'granted');
+    };
+    getBarCodeScannerPermissions();
     loadBackground();
     loadFonts();
   }, []);
@@ -43,13 +57,29 @@ export default function About({ navigation }) {
         <ImageBackground source={{ uri: image }} style={styles.image}>
           {fontsLoaded ? (
             <>
-            <Text style={{ fontSize: 20 }}>{NOMBRE_APP}</Text>
+              <Text style={{ fontSize: 20 }}>{NOMBRE_APP}</Text>
               <Text style={{ fontFamily: 'font', fontSize: 60 }}>{NOMBRE_APP}</Text>
               <Boton onPress={copyToClipboard} titulo='Copiar el texto' style={styles.button} />
             </>
-          ):(
+          ) : (
             <></>
-          )}          
+          )}
+          <Boton onPress={() => setScanQR(true)} titulo='Escanear APP' style={styles.button} />
+          {scanQR ? (
+            <>
+              <BarCodeScanner
+                onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+                style={StyleSheet.absoluteFillObject}
+              />
+              {scanned && <> 
+                <Boton onPress={() => setScanned(false)} titulo='Escanear de nuevo' style={styles.button} />
+                <Boton onPress={() => setScanQR(false)} titulo='Cerrar escanner' style={styles.button} />
+              </>
+              }
+            </>
+          ) : (
+            <></>
+          )}
         </ImageBackground>
         <Menu navigation={navigation} />
       </SafeAreaView>
