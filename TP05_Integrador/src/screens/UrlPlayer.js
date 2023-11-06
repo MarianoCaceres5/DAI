@@ -2,7 +2,8 @@ import { View, Text, StyleSheet, SafeAreaView, ImageBackground, Button } from 'r
 import React, { useState, useEffect, useRef } from 'react';
 import Menu from '../components/Menu'
 import DataService from '../services/DataService';
-import { Video, ResizeMode } from 'expo-av';
+import { Video, ResizeMode, Audio } from 'expo-av';
+import Boton from '../components/Boton';
 
 let dataService = new DataService();
 
@@ -12,7 +13,9 @@ export default function UrlPlayer({ navigation }) {
   const [status, setStatus] = React.useState({});
   const [image, setImage] = useState(null);
   const [videoUrl, setVideo] = useState(undefined);
-  const [musica, setMusica] = useState();
+  const [musicaUrl, setMusica] = useState(undefined);
+  const [sound, setSound] = useState();
+  const [isSoundReproducing, setIsSoundReproducing] = useState(false);
 
   let loadBackground = async () => {
     if (JSON.parse(await dataService.obtenerBackground())) {
@@ -24,13 +27,43 @@ export default function UrlPlayer({ navigation }) {
   let loadMultimedia = async () => {
     if (await dataService.obtenerDatos()) {
       let datos = await dataService.obtenerDatos();
-      let video = datos.video;
-      console.log(video)
-      setVideo(video)
-      let musica = datos.musica;
-      setMusica(musica)
+      if (datos.video && datos.musica) {
+        let video = datos.video;
+        setVideo(video)
+        let musica = datos.musica;
+        setMusica(musica)
+        const { sound } = await Audio.Sound.createAsync({ uri: musica }, { volume: 0.8 },);
+        setSound(sound);
+      }
     }
   }
+
+  let reproduceSound = async () => {
+    console.log()
+    if (isSoundReproducing && sound) {
+      setIsSoundReproducing(false)
+      console.log('Unloading Sound');
+      await sound.pauseAsync();
+      sound.unloadAsync();
+    } else {
+      setIsSoundReproducing(true);
+      console.log('Loading Sound');
+      const { sound } = await Audio.Sound.createAsync({ uri: musicaUrl }, { volume: 0.8 },);
+      setSound(sound);
+    }
+  }
+
+  let playSound = async () => {
+    setIsSoundReproducing(true)
+    console.log('Playing Sound');
+    await sound.playAsync();
+  }
+
+  useEffect(() => {
+    if (sound) {
+      playSound();
+    }
+  }, [sound]);
 
   useEffect(() => {
     loadBackground();
@@ -48,18 +81,21 @@ export default function UrlPlayer({ navigation }) {
               ref={video}
               source={{
                 uri: videoUrl,
-              }}              
+              }}
               useNativeControls
               resizeMode={ResizeMode.CONTAIN}
               isLooping
               onPlaybackStatusUpdate={status => setStatus(() => status)}
             />
-            <Button
-              title={status.isPlaying ? 'Pause' : 'Play'}
-              onPress={() =>
-                status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()
-              }
-            />
+            <Boton onPress={() => status.isPlaying ? video.current.pauseAsync() : video.current.playAsync()} titulo={status.isPlaying ? 'Pausar video' : 'Reproducir video'} style={styles.button1} />
+            
+          </>
+        ) : (
+          <></>
+        )}
+        {sound ? (
+          <>
+            <Boton onPress={reproduceSound} titulo={isSoundReproducing ? 'Pausar audio' : 'Reproducir audio'} style={styles.button2} />
           </>
         ) : (
           <></>
@@ -78,6 +114,20 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     backgroundColor: '#fff'
+  },
+  button1: {
+    marginTop: 20,
+    width: 300,
+    height: 60,
+    backgroundColor: 'green',
+    borderRadius: 10
+  },
+  button2: {
+    marginTop: 20,
+    width: 300,
+    height: 60,
+    backgroundColor: 'blue',
+    borderRadius: 10
   },
   image: {
     width: '100%',
