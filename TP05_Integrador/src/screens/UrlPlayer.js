@@ -73,7 +73,7 @@ export default function UrlPlayer({ navigation }) {
   return (
     <SafeAreaView style={[styles.container]}>
       <ImageBackground source={{ uri: image }} style={styles.image}>
-        <Text style={{ backgroundColor: 'white', fontSize: 20, width: '80%', textAlign: 'center' }}>UrlPlayer</Text>
+        <Text style={{ backgroundColor: 'white', fontSize: 20, width: '80%', textAlign: 'center' }}>MultimediaScreen</Text>
         {videoUrl ? (
           <>
             <Video
@@ -98,7 +98,9 @@ export default function UrlPlayer({ navigation }) {
             <Boton onPress={reproduceSound} titulo={isSoundReproducing ? 'Pausar audio' : 'Reproducir audio'} style={styles.button2} />
           </>
         ) : (
-          <></>
+          <>
+            <Text style={{ backgroundColor: 'white', fontSize: 15, width: '80%', textAlign: 'center' }}>No hay archivos disponibles</Text>
+          </>
         )}
       </ImageBackground>
       <Menu navigation={navigation} />

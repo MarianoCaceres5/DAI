@@ -13,8 +13,10 @@
     "@react-navigation/native": "^6.1.9",
     "@react-navigation/native-stack": "^6.9.16",
     "expo": "~49.0.15",
+    "expo-av": "~13.4.1",
     "expo-barcode-scanner": "~12.5.3",
     "expo-camera": "~13.4.4",
+    "expo-clipboard": "^4.5.0",
     "expo-font": "~11.4.0",
     "expo-image-picker": "~14.3.2",
     "expo-sensors": "~12.3.0",
@@ -25,8 +27,7 @@
     "react-native-screens": "~3.22.0",
     "react-native-vector-icons": "^10.0.1",
     "react-native-video": "^2.3.1",
-    "react-native-video-player": "^0.14.0",
-    "expo-av": "~13.4.1"
+    "react-native-video-player": "^0.14.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"

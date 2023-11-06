@@ -3,12 +3,23 @@ import React, { useState, useEffect } from 'react';
 import Menu from '../components/Menu'
 import DataService from '../services/DataService';
 import Boton from '../components/Boton'
+import * as Font from 'expo-font';
+import * as Clipboard from 'expo-clipboard';
 
 let dataService = new DataService();
+const NOMBRE_APP = 'Mariano Caceres'
 
 export default function About({ navigation }) {
 
   const [image, setImage] = useState(null);
+  const [fontsLoaded, setFontsLoaded] = useState(false);
+
+  async function loadFonts() {
+    await Font.loadAsync({
+      'font': require('../../assets/fonts/barcodeFont.ttf'),
+    });
+    setFontsLoaded(true)
+  }
 
   let loadBackground = async () => {
     if (JSON.parse(await dataService.obtenerBackground())) {
@@ -17,16 +28,28 @@ export default function About({ navigation }) {
     }
   }
 
+  const copyToClipboard = async () => {
+    await Clipboard.setStringAsync(NOMBRE_APP);
+  };
+
   useEffect(() => {
     loadBackground();
+    loadFonts();
   }, []);
 
   return (
     <>
       <SafeAreaView style={[styles.container]} >
         <ImageBackground source={{ uri: image }} style={styles.image}>
-          <Text>Mariano Caceres</Text>
-          <Text style={{ backgroundColor: 'white', fontSize: 20, width: '80%', textAlign: 'center' }}>Presione para copiar el texto</Text>
+          {fontsLoaded ? (
+            <>
+            <Text style={{ fontSize: 20 }}>{NOMBRE_APP}</Text>
+              <Text style={{ fontFamily: 'font', fontSize: 60 }}>{NOMBRE_APP}</Text>
+              <Boton onPress={copyToClipboard} titulo='Copiar el texto' style={styles.button} />
+            </>
+          ):(
+            <></>
+          )}          
         </ImageBackground>
         <Menu navigation={navigation} />
       </SafeAreaView>
