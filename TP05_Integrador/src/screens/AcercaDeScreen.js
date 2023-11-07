@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, SafeAreaView, ImageBackground, Image } from 'react-native'
+import { View, Text, StyleSheet, SafeAreaView, ImageBackground, Image, TouchableOpacity } from 'react-native'
 import React, { useState, useEffect } from 'react';
 import Menu from '../components/Menu'
 import DataService from '../services/DataService';
@@ -10,7 +10,7 @@ import { BarCodeScanner } from 'expo-barcode-scanner';
 let dataService = new DataService();
 const NOMBRE_APP = 'Mariano Caceres'
 
-export default function About({ navigation }) {
+export default function AcercaDeScreen({ navigation }) {
 
   const [image, setImage] = useState(null);
   const [fontsLoaded, setFontsLoaded] = useState(false);
@@ -57,9 +57,11 @@ export default function About({ navigation }) {
         <ImageBackground source={{ uri: image }} style={styles.image}>
           {fontsLoaded ? (
             <>
-              <Text style={{ fontSize: 20 }}>{NOMBRE_APP}</Text>
-              <Text style={{ fontFamily: 'font', fontSize: 60 }}>{NOMBRE_APP}</Text>
-              <Boton onPress={copyToClipboard} titulo='Copiar el texto' style={styles.button} />
+              <TouchableOpacity style={{backgroundColor:'white'}} onPress={() => copyToClipboard()}>
+                <Text style={{ fontSize: 20 }}>{NOMBRE_APP}</Text>
+                <Text style={{ fontFamily: 'font', fontSize: 60 }}>{NOMBRE_APP}</Text>
+              </TouchableOpacity>
+              <Text style={{ fontSize: 20 }}>Presione el QR para copiar el texto</Text>
             </>
           ) : (
             <></>
@@ -71,7 +73,7 @@ export default function About({ navigation }) {
                 onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
                 style={StyleSheet.absoluteFillObject}
               />
-              {scanned && <> 
+              {scanned && <>
                 <Boton onPress={() => setScanned(false)} titulo='Escanear de nuevo' style={styles.button} />
                 <Boton onPress={() => setScanQR(false)} titulo='Cerrar escanner' style={styles.button} />
               </>

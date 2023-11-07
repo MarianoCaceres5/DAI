@@ -6,33 +6,33 @@ export default function Menu({ navigation }) {
     <View style={[styles.menu]}>
       <Pressable
         style={[styles.button]}
-        onPress={() => navigation.navigate("BackgroundImageSelector")}
+        onPress={() => navigation.navigate("CambioFondoScreen")}
       >
-        <Text style={[styles.text]}>Background</Text>        
+        <Text style={[styles.text]}>Fondo</Text>        
       </Pressable>
       <Pressable
         style={[styles.button]}
-        onPress={() => navigation.navigate("UrlPlayer")}
+        onPress={() => navigation.navigate("MultimediaScreen")}
       >
-        <Text style={[styles.text]}>Urls</Text>        
+        <Text style={[styles.text]}>Multimedia</Text>        
       </Pressable>
       <Pressable
         style={[styles.button]}
-        onPress={() => navigation.navigate("Home")}
+        onPress={() => navigation.navigate("EmergenciaScreen")}
       >
-        <Text style={[styles.text]}>Home</Text>        
+        <Text style={[styles.text]}>Emergencia</Text>        
       </Pressable>
       <Pressable
         style={[styles.button]}
-        onPress={() => navigation.navigate("About")}
+        onPress={() => navigation.navigate("AcercaDeScreen")}
       >
-        <Text style={[styles.text]}>About</Text>        
+        <Text style={[styles.text]}>Acerca de</Text>        
       </Pressable>
       <Pressable
         style={[styles.button]}
-        onPress={() => navigation.navigate("Configuration")}
+        onPress={() => navigation.navigate("ConfiguracionScreen")}
       >
-        <Text style={[styles.text]}>Configuration</Text>        
+        <Text style={[styles.text]}>Configuracion</Text>        
       </Pressable>
     </View>
   );

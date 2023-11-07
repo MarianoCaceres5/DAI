@@ -7,7 +7,7 @@ import Boton from '../components/Boton';
 
 let dataService = new DataService();
 
-export default function UrlPlayer({ navigation }) {
+export default function MultimediaScreen({ navigation }) {
 
   const video = useRef(null);
   const [status, setStatus] = React.useState({});

@@ -11,8 +11,8 @@ import MessageConstants from '../constants/MessageConstants'
 
 let dataService = new DataService();
 
-export default function Home({ navigation }) {
-  
+export default function EmergenciaScreen({ navigation }) {
+
   const [{ x, y, z }, setData] = useState({
     x: 0,
     y: 0,
@@ -23,6 +23,7 @@ export default function Home({ navigation }) {
   const [success, setSuccess] = useState(false);
   const [mensajeModal, setMensajeModal] = useState('');
   const [image, setImage] = useState(null);
+  const [telefono, setTelefono] = useState();
 
   const _slow = () => Accelerometer.setUpdateInterval(1000);
   const _fast = () => Accelerometer.setUpdateInterval(16);
@@ -53,8 +54,6 @@ export default function Home({ navigation }) {
       auxiliarX = x;
       if (accelerometerData.x < auxiliarX) {
         if ((auxiliarX - accelerometerData.x) > 0.5) {
-          let datos = await dataService.obtenerDatos();
-          let telefono = datos.telefono;
           if (telefono) {
             callNumber(telefono)
           } else {
@@ -66,8 +65,6 @@ export default function Home({ navigation }) {
       } else {
         if ((accelerometerData.x - auxiliarX) > 0.5) {
           if ((auxiliarX - accelerometerData.x) > 0.5) {
-            let datos = await dataService.obtenerDatos();
-            let telefono = datos.telefono;
             if (telefono) {
               callNumber(telefono)
             } else {
@@ -88,25 +85,34 @@ export default function Home({ navigation }) {
   };
 
   let loadBackground = async () => {
-    if(JSON.parse(await dataService.obtenerBackground())){
+    if (JSON.parse(await dataService.obtenerBackground())) {
       let backgroundImage = JSON.parse(await dataService.obtenerBackground());
       setImage(backgroundImage.uri);
+    }
+  }
+
+  let loadTelefono = async () => {
+    let datos = await dataService.obtenerDatos();
+    if(datos.telefono){
+      setTelefono(datos.telefono)
     }    
   }
 
   useEffect(() => {
     loadBackground();
+    loadTelefono();
     _subscribe();
     _slow();
-    return () => _unsubscribe();    
+    return () => _unsubscribe();
   }, []);
 
 
   return (
     <SafeAreaView style={[styles.container]}>
-      <ImageBackground source={{uri: image}} style={styles.image}>
-        <Text style={{backgroundColor:'white', fontSize: 20, width: '80%', textAlign:'center'}}>Agita el celular para llamar a tu contacto de emergencia</Text>
-        <ModalMensaje mensaje={mensajeModal} modalVisible={modalVisible} setModalVisible={setModalVisible} success={success}/>
+      <ImageBackground source={{ uri: image }} style={styles.image}>
+        <Text style={{ backgroundColor: 'white', fontSize: 20, width: '80%', textAlign: 'center' }}>Numero: {telefono}</Text>
+        <Text style={{ backgroundColor: 'white', fontSize: 20, width: '80%', textAlign: 'center' }}>Agita el celular para llamar a tu contacto de emergencia</Text>
+        <ModalMensaje mensaje={mensajeModal} modalVisible={modalVisible} setModalVisible={setModalVisible} success={success} />
       </ImageBackground>
       <Menu navigation={navigation} />
     </SafeAreaView>
@@ -121,7 +127,7 @@ const styles = StyleSheet.create({
     height: '100%',
     width: '100%',
     backgroundColor: '#fff',
-    textAlign:'center'
+    textAlign: 'center'
   },
   image: {
     width: '100%',

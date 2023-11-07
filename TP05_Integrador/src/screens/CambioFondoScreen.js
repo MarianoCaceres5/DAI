@@ -9,7 +9,7 @@ import { Camera, CameraType } from 'expo-camera';
 
 let dataService = new DataService()
 
-export default function BackgroundImageSelector({ navigation }) {
+export default function CambioFondoScreen({ navigation }) {
 
   const [image, setImage] = useState(null);
   const [type, setType] = useState(CameraType.back);

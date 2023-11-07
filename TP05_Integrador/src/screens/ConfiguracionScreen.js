@@ -8,7 +8,7 @@ import MessageConstants from '../constants/MessageConstants'
 
 let dataService = new DataService();
 
-export default function Configuration({ navigation }) {
+export default function ConfiguracionScreen({ navigation }) {
 
   const [telefono, setTelefono] = useState();
   const [urlVideo, setUrlVideo] = useState();

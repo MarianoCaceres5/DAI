@@ -2,11 +2,11 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import Home from './src/screens/Home'
-import Configuration from './src/screens/Configuration'
-import BackgroundImageSelector from './src/screens/BackgroundImageSelector'
-import UrlPlayer from './src/screens/UrlPlayer'
-import About from './src/screens/About'
+import EmergenciaScreen from './src/screens/EmergenciaScreen'
+import ConfiguracionScreen from './src/screens/ConfiguracionScreen'
+import CambioFondoScreen from './src/screens/CambioFondoScreen'
+import MultimediaScreen from './src/screens/MultimediaScreen'
+import AcercaDeScreen from './src/screens/AcercaDeScreen'
 
 const Stack = createNativeStackNavigator();
 
@@ -14,21 +14,21 @@ export default function App() {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        initialRouteName="Configuration"
+        initialRouteName="ConfiguracionScreen"
         screenOptions={{
           orientation: 'portrait',
           headerShown: false,
           animation: 'none', 
         }}>        
         <Stack.Screen
-          name="Home"
-          component={Home}
+          name="EmergenciaScreen"
+          component={EmergenciaScreen}
           options={{title: 'Home'}}
         />
-        <Stack.Screen name="Configuration" component={Configuration} />
-        <Stack.Screen name="BackgroundImageSelector" component={BackgroundImageSelector} />
-        <Stack.Screen name="UrlPlayer" component={UrlPlayer} />
-        <Stack.Screen name="About" component={About} />
+        <Stack.Screen name="ConfiguracionScreen" component={ConfiguracionScreen} />
+        <Stack.Screen name="CambioFondoScreen" component={CambioFondoScreen} />
+        <Stack.Screen name="MultimediaScreen" component={MultimediaScreen} />
+        <Stack.Screen name="AcercaDeScreen" component={AcercaDeScreen} />
       </Stack.Navigator>
     </NavigationContainer>
   );
