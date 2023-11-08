@@ -48,30 +48,29 @@ export default function EmergenciaScreen({ navigation }) {
       .catch(err => console.log(err));
   };
 
+  const checkNumber = async () => {
+    if ((await dataService.obtenerDatos()).telefono) {
+      datos = dataService.obtenerDatos();
+      callNumber(datos.telefono);
+    } else {
+      setMensajeModal(MessageConstants.MSG_TELEFONO_UNDEFINED);
+      setModalVisible(true);
+    }
+    Vibration.vibrate();
+  };
+
   const _subscribe = () => {
     let auxiliarX;
     setSubscription(Accelerometer.addListener(async (accelerometerData) => {
       auxiliarX = x;
       if (accelerometerData.x < auxiliarX) {
         if ((auxiliarX - accelerometerData.x) > 0.5) {
-          if (telefono) {
-            callNumber(telefono)
-          } else {
-            setMensajeModal(MessageConstants.MSG_TELEFONO_UNDEFINED);
-            setModalVisible(true)
-          }
-          Vibration.vibrate();
+          checkNumber();
         }
       } else {
         if ((accelerometerData.x - auxiliarX) > 0.5) {
           if ((auxiliarX - accelerometerData.x) > 0.5) {
-            if (telefono) {
-              callNumber(telefono)
-            } else {
-              setMensajeModal(MessageConstants.MSG_TELEFONO_UNDEFINED);
-              setModalVisible(true)
-            }
-            Vibration.vibrate();
+            checkNumber();
           }
         }
       }

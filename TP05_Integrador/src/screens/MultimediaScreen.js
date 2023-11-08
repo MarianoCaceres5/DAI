@@ -31,9 +31,7 @@ export default function MultimediaScreen({ navigation }) {
         let video = datos.video;
         setVideo(video)
         let musica = datos.musica;
-        setMusica(musica)
-        const { sound } = await Audio.Sound.createAsync({ uri: musica }, { volume: 0.8 },);
-        setSound(sound);
+        setMusica(musica);
       }
     }
   }
@@ -91,9 +89,11 @@ export default function MultimediaScreen({ navigation }) {
             
           </>
         ) : (
-          <></>
+          <>
+            <Text style={{ backgroundColor: 'white', fontSize: 15, width: '80%', textAlign: 'center' }}>No hay archivos disponibles</Text>
+          </>
         )}
-        {sound ? (
+        {musicaUrl ? (
           <>
             <Boton onPress={reproduceSound} titulo={isSoundReproducing ? 'Pausar audio' : 'Reproducir audio'} style={styles.button2} />
           </>
